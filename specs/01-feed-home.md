@@ -17,7 +17,7 @@
 - Caja simulada de composer ("Compartí un momento…") que enlaza a `/crear-publicacion`.
 - Sección "PUBLICADO HOY" con las 3 tarjetas de publicación del mockup (logro, actividad con foto placeholder, anuncio), cada una con avatar, badge de tipo, fecha/hora, texto, contador de me gusta y comentarios, link "Editar".
 - Paleta y tipografía del mockup: fondo `#F6ECDF`, texto `#3F362E`, fuentes **Fredoka** (títulos) y **Nunito** (texto) cargadas con `next/font/google`.
-- Estilo con **Tailwind v4 usando valores arbitrarios** (`bg-[#F6ECDF]`, `w-[248px]`, etc.) traducidos de los estilos inline del mockup sin alterar valores.
+- Estilo con **Tailwind v4 usando valores arbitrarios** (`bg-[#F6ECDF]`, `w-62`, etc.) traducidos de los estilos inline del mockup sin alterar valores.
 - Comportamiento **mobile**: debajo de 768px (`md`) la sidebar se oculta y aparece un header superior con logo + botón que abre la sidebar como drawer con overlay. Desktop (≥768px) se ve exactamente como el mockup.
 - Componentes reutilizables: `components/Sidebar.tsx` y `components/PostCard.tsx`, pensados para reuso en futuras pantallas (Niños, Avisos, etc.).
 
@@ -97,7 +97,7 @@ Verificación final: comparación lado a lado con el mockup, comportamiento mobi
 
 ## Decisiones
 
-- **Sí:** Tailwind v4 con valores arbitrarios (`bg-[#F6ECDF]`, `w-[248px]`) en lugar de copiar los estilos inline del mockup. Elección del usuario; mantiene la convención Tailwind del proyecto con los mismos valores exactos.
+- **Sí:** Tailwind v4 con valores arbitrarios (`bg-[#F6ECDF]`, `w-62`) en lugar de copiar los estilos inline del mockup. Elección del usuario; mantiene la convención Tailwind del proyecto con los mismos valores exactos.
 - **No:** copiar los estilos inline del mockup tal cual. Fidelidad garantizada igual con Tailwind, pero desviado de la convención del repo.
 - **Sí:** `next/font/google` para Fredoka y Nunito reemplazando Geist. Self-hosted y sin layout shift, en vez de depender de los `<link>` de Google Fonts del mockup.
 - **Sí:** links del sidebar a rutas futuras (`/ninos`, `/avisos`, `/mi-cuenta`, `/crear-publicacion`, `/login`, `/detalle-publicacion`, `/foto`) aunque den 404 hoy. Así las próximas pantallas andan al crearse sin retocar el feed.
