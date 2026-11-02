@@ -1,6 +1,6 @@
 # SPEC 01 — Feed de guardería como home (`/`)
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** ninguna
 > **Fecha:** 2026-11-01
 > **Objetivo:** Implementar el mockup `referencias/pantallas/feed.dc.html` como la ruta `/` de OpenDayCare con estilo idéntico — sin autenticación, sin base de datos y con datos hardcodeados — agregando comportamiento mobile (header con drawer) por debajo de 768px.

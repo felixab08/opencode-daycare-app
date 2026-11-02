@@ -1,6 +1,6 @@
 # SPEC 02 — Tokens de color en la UI existente
 
-> **Estado:** Aprobado
+> **Estado* :*Implementado
 > **Depende de:** SPEC 01
 > **Fecha:** 2026-11-01
 > **Objetivo:** Migrar los hex arbitrarios de `feed` a los tokens de color definidos en `@theme` en `app/globals.css`, reinterpretando con tokens cercanos los colores que quedaron sin token.
