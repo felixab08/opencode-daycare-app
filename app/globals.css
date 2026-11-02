@@ -19,6 +19,7 @@
   --color-parent-active: #cfebd8;
   --color-parent-pending: #f7e7a6;
   --color-canvas-warm: #fbf4ec;
+  --color-scrollbar: #e4d6c4;
 }
 
 @theme inline {
@@ -38,7 +39,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #E4D6C4;
+  background: var(--color-scrollbar);
   border-radius: 8px;
   border: 3px solid transparent;
   background-clip: content-box;

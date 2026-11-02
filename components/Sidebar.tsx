@@ -44,12 +44,12 @@ const navigationLinks: NavLink[] = [
 function BrandLink({ onClick, className }: { onClick?: () => void; className?: string }) {
   return (
     <Link href="/" onClick={onClick} className={`flex items-center gap-[11px] ${className ?? ""}`}>
-      <div className="w-[38px] h-[38px] flex-none rounded-[12px] bg-[linear-gradient(155deg,#F8C3A8,#F2937A)] flex items-center justify-center">
+      <div className="w-[38px] h-[38px] flex-none rounded-[12px] bg-[linear-gradient(155deg,var(--color-accent-soft),var(--color-accent-warm))] flex items-center justify-center">
         <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
       </div>
       <div>
-        <div className="font-fredoka font-semibold text-[17px] leading-none text-[#3F362E]">OpenDayCare</div>
-        <div className="mt-[2px] text-[11.5px] text-[#A89A8B]">Sala Soles</div>
+        <div className="font-fredoka font-semibold text-[17px] leading-none text-ink">OpenDayCare</div>
+        <div className="mt-[2px] text-[11.5px] text-muted">Sala Soles</div>
       </div>
     </Link>
   );
@@ -64,7 +64,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
       <Link
         href="/crear-publicacion"
         onClick={onNavigate}
-        className="flex w-full items-center justify-center gap-2 rounded-[14px] bg-[linear-gradient(180deg,#F4977E,#EE8164)] py-3 font-extrabold text-[14.5px] text-white shadow-[0_8px_18px_-8px_rgba(238,129,100,0.75)] mb-[18px]"
+        className="flex w-full items-center justify-center gap-2 rounded-[14px] bg-[linear-gradient(180deg,var(--color-accent-soft),var(--color-accent-warm))] py-3 font-extrabold text-[14.5px] text-white shadow-[0_8px_18px_-8px_rgba(238,129,100,0.75)] mb-[18px]"
       >
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M5 12h14"/></svg>
         Nueva publicación
@@ -79,8 +79,8 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
               onClick={onNavigate}
               className={`flex items-center gap-3 rounded-[12px] px-3 py-[11px] text-[14.5px] ${
                 isActive
-                  ? "bg-[#FBE3D8] font-extrabold text-[#D9583C]"
-                  : "font-semibold text-[#6E6359]"
+                  ? "bg-soft font-extrabold text-accent"
+                  : "font-semibold text-muted"
               }`}
             >
               {link.icon}
@@ -89,19 +89,19 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
           );
         })}
       </nav>
-      <div className="mt-[10px] border-t border-[#ECE0D0] pt-[14px]">
+      <div className="mt-[10px] border-t border-line pt-[14px]">
         <div className="flex items-center gap-[11px] px-2 py-1.5">
-          <div className="flex-none flex h-[38px] w-[38px] items-center justify-center rounded-full bg-[#F2937A] font-fredoka font-semibold text-[16px] text-white">C</div>
+          <div className="flex-none flex h-[38px] w-[38px] items-center justify-center rounded-full bg-accent-soft font-fredoka font-semibold text-[16px] text-white">C</div>
           <div className="min-w-0 flex-1">
-            <div className="font-extrabold text-[14px] text-[#3F362E]">Caro Giménez</div>
-            <div className="text-[12px] text-[#A89A8B]">Maestra · Soles</div>
+            <div className="font-extrabold text-[14px] text-ink">Caro Giménez</div>
+            <div className="text-[12px] text-muted">Maestra · Soles</div>
           </div>
           <Link
             href="/login"
             onClick={onNavigate}
             title="Cerrar sesión"
             aria-label="Cerrar sesión"
-            className="flex-none flex h-8 w-8 items-center justify-center rounded-[10px] bg-[#F6ECDF] text-[#94887B]"
+            className="flex-none flex h-8 w-8 items-center justify-center rounded-[10px] bg-canvas text-muted"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
           </Link>
@@ -117,7 +117,7 @@ function MobileMenuButton({ onClick, label, icon }: { onClick: () => void; label
       type="button"
       aria-label={label}
       onClick={onClick}
-      className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-[#F6ECDF] text-[#6E6359]"
+      className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-canvas text-muted"
     >
       {icon}
     </button>
@@ -132,12 +132,12 @@ export default function Sidebar() {
   return (
     <>
       {/* Desktop sidebar (identical to the mockup) */}
-      <aside className="sticky top-0 hidden h-screen w-[248px] flex-none flex-col bg-[#FFFDF9] px-4 py-6 md:flex border-r border-[#ECE0D0]">
+      <aside className="sticky top-0 hidden h-screen w-[248px] flex-none flex-col bg-card px-4 py-6 md:flex border-r border-line">
         <SidebarContent />
       </aside>
 
       {/* Mobile header */}
-      <header className="fixed inset-x-0 top-0 z-40 flex h-14 items-center justify-between border-b border-[#ECE0D0] bg-[#FFFDF9] px-4 md:hidden">
+      <header className="fixed inset-x-0 top-0 z-40 flex h-14 items-center justify-between border-b border-line bg-card px-4 md:hidden">
         <BrandLink />
         <MobileMenuButton
           onClick={() => setIsDrawerOpen(true)}
@@ -153,7 +153,7 @@ export default function Sidebar() {
           className={`absolute inset-0 bg-black/40 transition-opacity duration-200 ${isDrawerOpen ? "opacity-100" : "opacity-0"}`}
         />
         <aside
-          className={`absolute left-0 top-0 flex h-full w-[280px] max-w-[85vw] flex-col bg-[#FFFDF9] px-4 py-6 border-r border-[#ECE0D0] transition-transform duration-200 ${
+          className={`absolute left-0 top-0 flex h-full w-[280px] max-w-[85vw] flex-col bg-card px-4 py-6 border-r border-line transition-transform duration-200 ${
             isDrawerOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
