@@ -36,3 +36,9 @@
 - `/spec-impl` crea una rama git `spec-NN-slug` (controlado por `specs/.spec-config.yml`, `AutoCreateBranch: true` por defecto) e implementa paso a paso con pausas; **nunca commitea por su cuenta**.
 - Plantilla y reglas del documento: `.agents/skills/spec/template.md` (encabezado en blockquote, alcance In/Out, plan numerado con pasos que dejan el juego funcionando, criterios de aceptación verificables, decisiones tomadas/descartadas).
 - No implementes nada sin una spec aprobada; si piden un cambio pequeño fuera del flujo, proporle crear una spec primero.
+
+## Reglas de código
+
+- usar código limpio. nombres, funciones y vvariables, etc en ingles.
+- las variables declaradas deben tener un significado y ser coherentes con el nombre.
+- No repetir código.
