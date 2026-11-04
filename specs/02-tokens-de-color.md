@@ -82,13 +82,13 @@ Tabla de mapeo completa (hex → token):
 
 ## Criterios de aceptación
 
-- [ ] `grep -E "#[0-9A-Fa-f]{6}|rgba\("` en `components/` y `app/page.tsx` devuelve únicamente sombras rgba y **cero** hex de color.
-- [ ] `::-webkit-scrollbar-thumb` usa `var(--color-scrollbar)` y el token está definido en `@theme`.
-- [ ] `badgeStyles` no contiene hex; los tres badges compilan con clases estáticas (`bg-parent-active`, `bg-staff/20`, `bg-announcement/20`).
-- [ ] El corazón de likes se renderiza relleno con `text-accent` y `fill="currentColor"`.
-- [ ] Comparación visual: sidebar, cards y feed se ven casi idénticos; las desviaciones permitidas son solo las documentadas (grises → `muted`, pastelados → tokens con opacidad, gradientes → `accent-soft→accent-warm`).
-- [ ] `npm run lint` pasa sin errores.
-- [ ] `npx tsc --noEmit` pasa sin errores.
+- [x] `grep -E "#[0-9A-Fa-f]{6}|rgba\("` en `components/` y `app/page.tsx` devuelve únicamente sombras rgba y **cero** hex de color.
+- [x] `::-webkit-scrollbar-thumb` usa `var(--color-scrollbar)` y el token está definido en `@theme`.
+- [x] `badgeStyles` no contiene hex; los tres badges compilan con clases estáticas (`bg-parent-active`, `bg-staff/20`, `bg-announcement/20`).
+- [x] El corazón de likes se renderiza relleno con `text-accent` y `fill="currentColor"`.
+- [x] Comparación visual: sidebar, cards y feed se ven casi idénticos; las desviaciones permitidas son solo las documentadas (grises → `muted`, pastelados → tokens con opacidad, gradientes → `accent-soft→accent-warm`).
+- [x] `npm run lint` pasa sin errores.
+- [x] `npx tsc --noEmit` pasa sin errores.
 
 ## Decisiones
 
@@ -100,6 +100,14 @@ Tabla de mapeo completa (hex → token):
 - **Sí:** token nuevo `--color-scrollbar` (elección del usuario en contra de la recomendación de dejar hex).
 - **No:** tokens para las sombras rgba — son decorativas, cada una se usa una vez y nadie las reutiliza; quedan documentadas como excepción.
 - **No:** tocar los valores de `@theme` existentes ni el bloque `@theme inline` de fuentes — el usuario ya los definió.
+
+## Verificación (2026-11-04)
+
+- **Hex/rgba:** grep en `components/*.tsx` y `app/page.tsx` → 3 matches, todos las sombras rgba documentadas (`rgba(120,90,60,.5)`, `rgba(238,129,100,.75)`, `rgba(120,90,60,.4)`); hex de color: 0.
+- **Token scrollbar:** `--color-scrollbar: #e4d6c4` en `@theme` y thumb con `var(--color-scrollbar)` (`app/globals.css`).
+- **Badges y corazón (Playwright 1280×800, `.playwright-mcp/feed-app-desktop-tokens.png`):** LOGRO `rgb(207,235,216)`/`rgb(62,155,108)` exacto; ACTIVIDAD/ANUNCIO compilan tokens con opacidad (`bg-staff/20`/`bg-announcement/20` en oklab); `<svg fill="currentColor">` con `color: rgb(217,88,60)` (`accent`).
+- **Comandos:** `npm run lint` ✅ y `npx tsc --noEmit` ✅ (2026-11-04).
+- **Visual:** idéntico al feed de SPEC 01; los deltas restantes son exactamente los documentados en su tabla de mapeo (grises→`muted`, pastelados→tokens con opacidad, gradientes→`accent-soft→accent-warm`).
 
 ## Riesgos
 

@@ -80,18 +80,18 @@ Verificación final: comparación lado a lado con el mockup, comportamiento mobi
 
 ## Criterios de aceptación
 
-- [ ] `/` muestra la sidebar escritorio idéntica al mockup: fondo `#FFFDF9`, ancho 248px, logo sun con gradiente `#F8C3A8→#F2937A`, botón "Nueva publicación" degradado, items "Feed" (activo, `#FBE3D8`/`#D9583C`), "Niños", "Avisos", "Mi cuenta", bloque "Caro Giménez · Maestra · Soles" con avatar "C" y botón salir.
-- [ ] `document.fonts` en dev muestra Fredoka y Nunito cargadas (via `next/font`, self-hosted) y los títulos usan Fredoka.
-- [ ] Comparación lado a lado (escritorio ≥768px) de `/` con `feed.dc.html`: colores, tipografías, tamaños, bordes/redondeos, sombras, espaciados y textos coinciden visualmente.
-- [ ] El fondo del sitio es crema `#F6ECDF` también con el sistema en modo oscuro (no hay override `prefers-color-scheme` activo).
-- [ ] Sidebar: "Nueva publicación" → `/crear-publicacion`; logo y "Feed" → `/`; "Niños" → `/ninos`; "Avisos" → `/avisos`; "Mi cuenta" → `/mi-cuenta`; logout → `/login`.
-- [ ] Las 3 cards renderizan correctas: badges (LOGRO verde / ACTIVIDAD celeste / ANUNCIO azul), avatar "M" celeste en Mateo e icono megáfono en Anuncio general, textos exactos del mockup, likes 3/5/8 y comentarios 1/2/0.
-- [ ] La card de actividad incluye el placeholder punteado de foto (200px, link a `/foto`).
-- [ ] Cada card enlaza: comentarios → `/detalle-publicacion` y "Editar" → `/crear-publicacion`.
-- [ ] Debajo de 768px no hay sidebar; aparece header superior con logo + hamburguesa que abre el drawer con overlay; clicar el overlay cierra el drawer.
-- [ ] A 768px o más vuelve el layout de escritorio sin header móvil ni drawer visible.
-- [ ] `npm run lint` pasa sin errores.
-- [ ] `npx tsc --noEmit` pasa sin errores.
+- [x] `/` muestra la sidebar escritorio idéntica al mockup: fondo `#FFFDF9`, ancho 248px, logo sun con gradiente `#F8C3A8→#F2937A`, botón "Nueva publicación" degradado, items "Feed" (activo, `#FBE3D8`/`#D9583C`), "Niños", "Avisos", "Mi cuenta", bloque "Caro Giménez · Maestra · Soles" con avatar "C" y botón salir.
+- [x] `document.fonts` en dev muestra Fredoka y Nunito cargadas (via `next/font`, self-hosted) y los títulos usan Fredoka.
+- [x] Comparación lado a lado (escritorio ≥768px) de `/` con `feed.dc.html`: colores, tipografías, tamaños, bordes/redondeos, sombras, espaciados y textos coinciden visualmente.
+- [x] El fondo del sitio es crema `#F6ECDF` también con el sistema en modo oscuro (no hay override `prefers-color-scheme` activo).
+- [x] Sidebar: "Nueva publicación" → `/crear-publicacion`; logo y "Feed" → `/`; "Niños" → `/ninos`; "Avisos" → `/avisos`; "Mi cuenta" → `/mi-cuenta`; logout → `/login`.
+- [x] Las 3 cards renderizan correctas: badges (LOGRO verde / ACTIVIDAD celeste / ANUNCIO azul), avatar "M" celeste en Mateo e icono megáfono en Anuncio general, textos exactos del mockup, likes 3/5/8 y comentarios 1/2/0.
+- [x] La card de actividad incluye el placeholder punteado de foto (200px, link a `/foto`).
+- [x] Cada card enlaza: comentarios → `/detalle-publicacion` y "Editar" → `/crear-publicacion`.
+- [x] Debajo de 768px no hay sidebar; aparece header superior con logo + hamburguesa que abre el drawer con overlay; clicar el overlay cierra el drawer.
+- [x] A 768px o más vuelve el layout de escritorio sin header móvil ni drawer visible.
+- [x] `npm run lint` pasa sin errores.
+- [x] `npx tsc --noEmit` pasa sin errores.
 
 ---
 
@@ -111,6 +111,12 @@ Verificación final: comparación lado a lado con el mockup, comportamiento mobi
 - **No:** distribuir la sidebar por route group/layout raíz. Su lugar: al momento de crear el layout de las demás pantallas.
 
 ---
+
+## Verificación (2026-11-02)
+
+- **Código:** `npm run lint` ✅ y `npx tsc --noEmit` ✅ sin errores; modelo de datos en `components/PostCard.tsx` (tipos `Publication`/`PublicationType` exportados), links y textos exactos del mockup en `app/page.tsx`; sin override `prefers-color-scheme` en `app/globals.css`.
+- **Pantalla (Playwright, 1280×800 y 390×844, screenshots en `.playwright-mcp/`):** sidebar 248px `rgb(255,253,249)`, Feed activo `rgb(217,88,60)` sobre `rgb(251,227,216)`, logo con gradiente, h1 "Buenas, Caro" en Fredoka 30px; `document.fonts` confirma Fredoka y Nunito cargadas; `lang="es"`; badges LOGRO/ACTIVIDAD/ANUNCIO con dot; placeholder punteado 200px → `/foto`; likes 3/5/8 y comentarios 1/2/0; drawer abre con hamburguesa y cierra al clicar el overlay; ≥768px header móvil `display:none` y drawer oculto; con `prefers-color-scheme: dark` emulado el body queda `rgb(246,236,223)`.
+- **Desviaciones menores frente al mockup (visuales, no bloquean):** nav inactiva `#A89A8B` vs `#6E6359`, likes `#D9583C` vs `#E0654A`, "Editar" `#D9583C` vs `#C5503A`, badge ACTIVIDAD/ANUNCIO y avatar "M" usan tokens al 20–25% de opacidad en vez de los hex planos `#C7E7F1`/`#CCD8F4`/`#A9D9E8` (deltas sutiles en pantalla).
 
 ## Riesgos
 
