@@ -96,19 +96,19 @@ El contador del grupo sale de los datos: `${kids.length} niños`.
 
 ## Criterios de aceptación
 
-- [ ] `/kids` muestra la sidebar con "Niños" activo (`bg-soft` / `text-accent`), encabezado "GESTIÓN" + título "Niños" en Fredoka, buscador y divisor "SALA SOLES" con el contador "8 niños" derivado de los datos.
-- [ ] Las 8 tarjetas renderizan con textos exactos del mockup (nombres, edades, "N padres vinculados" con singular/plural y "sin padres vinculados" en Valentina).
-- [ ] Regla de badges: Mateo → MANÍ, Tomás → LACTOSA (`bg-allergy-warm`), Valentina → VINCULAR (`bg-allergy-pink`), los otros 5 → chevron; badges en labels en español.
-- [ ] Escribir en el buscador filtra la grilla en vivo por nombre; sin coincidencias se muestra el estado vacío plano (`muted`).
-- [ ] Cada tarjeta navega a `/kids/<slug>` y ese slug aparece en la URL.
-- [ ] `/kids/mateo-fernandez` replica el mockup: avatar 84px, nombre + "3 años · Sala Soles", botón "Editar" deshabilitado, caja de alergias con el texto exacto, tabla (12 mar 2022 / Soles / feb 2025), "Resumen del día" deshabilitado, PADRES VINCULADOS con Lucía ACTIVA y Diego PENDIENTE, "Vincular otro padre" deshabilitado.
-- [ ] "Volver a Niños" lleva a `/kids`.
-- [ ] Los otros 7 slugs renderizan el perfil con sus datos; navegación a un slug no listado da 404.
-- [ ] La sidebar marca "Niños" como activo también dentro de `/kids/[slug]`.
-- [ ] Debajo de 768px: header con hamburguesa + drawer funcionando en ambas pantallas, sin sidebar lateral.
-- [ ] `grep` de hex nuevos en el código nuevo devuelve solo las excepciones documentadas (pastelados de avatares y `\#9A7B1E`).
-- [ ] `npm run lint` y `npx tsc --noEmit` pasan.
-- [ ] El feed (`/`) se ve idéntico a la implementación previa tras el cambio de estructura.
+- [x] `/kids` muestra la sidebar con "Niños" activo (`bg-soft` / `text-accent`), encabezado "GESTIÓN" + título "Niños" en Fredoka, buscador y divisor "SALA SOLES" con el contador "8 niños" derivado de los datos.
+- [x] Las 8 tarjetas renderizan con textos exactos del mockup (nombres, edades, "N padres vinculados" con singular/plural y "sin padres vinculados" en Valentina).
+- [x] Regla de badges: Mateo → MANÍ, Tomás → LACTOSA (`bg-allergy-warm`), Valentina → VINCULAR (`bg-allergy-pink`), los otros 5 → chevron; badges en labels en español.
+- [x] Escribir en el buscador filtra la grilla en vivo por nombre; sin coincidencias se muestra el estado vacío plano (`muted`).
+- [x] Cada tarjeta navega a `/kids/<slug>` y ese slug aparece en la URL.
+- [x] `/kids/mateo-fernandez` replica el mockup: avatar 84px, nombre + "3 años · Sala Soles", botón "Editar" deshabilitado, caja de alergias con el texto exacto, tabla (12 mar 2022 / Soles / feb 2025), "Resumen del día" deshabilitado, PADRES VINCULADOS con Lucía ACTIVA y Diego PENDIENTE, "Vincular otro padre" deshabilitado.
+- [x] "Volver a Niños" lleva a `/kids`.
+- [x] Los otros 7 slugs renderizan el perfil con sus datos; navegación a un slug no listado da 404.
+- [x] La sidebar marca "Niños" como activo también dentro de `/kids/[slug]`.
+- [x] Debajo de 768px: header con hamburguesa + drawer funcionando en ambas pantallas, sin sidebar lateral.
+- [x] `grep` de hex nuevos en el código nuevo devuelve solo las excepciones documentadas (pastelados de avatares y `\#9A7B1E`).
+- [x] `npm run lint` y `npx tsc --noEmit` pasan.
+- [x] El feed (`/`) se ve idéntico a la implementación previa tras el cambio de estructura.
 
 ---
 

@@ -6,6 +6,13 @@ export async function generateStaticParams() {
   return kids.map((kid) => ({ slug: kid.slug }));
 }
 
+// Unknown slugs 404 via notFound() below: `dynamicParams` route-segment config
+// is not compatible with `nextConfig.cacheComponents`.
+
+// The entire page body depends on the slug, so there is no shared shell worth
+// prefetching; this opts the segment out of the instant-navigation check.
+export const instant = false;
+
 export default async function KidProfilePage({ params }: PageProps<"/kids/[slug]">) {
   const { slug } = await params;
   const kid = kids.find((candidate) => candidate.slug === slug);
