@@ -19,7 +19,7 @@ const navigationLinks: NavLink[] = [
     ),
   },
   {
-    href: "/ninos",
+    href: "/kids",
     label: "Niños",
     icon: (
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 20a5 5 0 0 1 5.5-4.9"/></svg>
@@ -71,7 +71,10 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
       </Link>
       <nav className="flex flex-1 flex-col gap-1">
         {navigationLinks.map((link) => {
-          const isActive = pathname === link.href;
+          const isActive =
+            link.href === "/"
+              ? pathname === "/"
+              : pathname === link.href || pathname.startsWith(`${link.href}/`);
           return (
             <Link
               key={link.href}
