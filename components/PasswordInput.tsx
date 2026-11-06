@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, type ChangeEvent } from "react";
+import TextInput from "./TextInput";
 
 interface PasswordInputProps {
   value?: string;
   defaultValue?: string;
   placeholder?: string;
   onChange?: (value: string) => void;
+  className?: string;
 }
 
 function EyeIcon() {
@@ -27,20 +29,20 @@ function EyeOffIcon() {
   );
 }
 
-export default function PasswordInput({ value, defaultValue, placeholder, onChange }: PasswordInputProps) {
+export default function PasswordInput({ value, defaultValue, placeholder, onChange, className }: PasswordInputProps) {
   const [show, setShow] = useState(false);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => onChange?.(event.target.value);
 
   return (
-    <div className="relative">
-      <input
+    <div className={`relative ${className ?? ""}`}>
+      <TextInput
         type={show ? "text" : "password"}
         value={value}
         defaultValue={defaultValue}
         placeholder={placeholder}
         onChange={handleChange}
-        className="w-full rounded-[14px] border-[1.5px] border-line bg-card py-3.5 pl-4 pr-10 text-[15px] text-ink outline-none placeholder:text-muted focus:border-accent-soft"
+        className="pr-10"
       />
       <button
         type="button"
