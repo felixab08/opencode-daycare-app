@@ -3,6 +3,7 @@
 import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import BrandMark from "./BrandMark";
 
 interface NavLink {
   href: string;
@@ -45,7 +46,7 @@ function BrandLink({ onClick, className }: { onClick?: () => void; className?: s
   return (
     <Link href="/" onClick={onClick} className={`flex items-center gap-2.75 ${className ?? ""}`}>
       <div className="w-9.5 h-9.5 flex-none rounded-xl bg-[linear-gradient(155deg,var(--color-accent-soft),var(--color-accent-warm))] flex items-center justify-center">
-        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <BrandMark size={21} />
       </div>
       <div>
         <div className="font-fredoka font-semibold text-[17px] leading-none text-ink">OpenDayCare</div>
