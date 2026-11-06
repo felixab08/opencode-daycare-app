@@ -26,6 +26,10 @@
 - Playwright MCP is configured in `opencode.json`; all Playwright-related files/screenshots must go in `.playwright-mcp/` (gitignored).
 - Managed `nextjs-agent-*` blocks below are rewritten by `next dev` — keep them, and commit this file with your work.
 
+## Procesos y puertos
+
+- **Siempre matar los procesos que el agente levante** (`npm run dev`, servidores, etc.) al terminar de usarlos, para que los puertos queden libres. En Windows: `Get-NetTCPConnection -LocalPort <puerto> -State Listen | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }` y verificar que el puerto quedó libre antes de cerrar.
+
 ## Flujo de trabajo obligatorio (specs)
 
 - Skills instaladas en `.agents/skills/` con lock en `skills-lock.json` (fuente: `klerith/fernando-skills`):
