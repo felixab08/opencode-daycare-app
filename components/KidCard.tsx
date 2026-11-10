@@ -3,7 +3,12 @@ import type { Kid } from "./kids-data";
 
 interface KidCardProps {
   kid: Kid;
+  canOpenProfile?: boolean; // false → static card: added kids have no profile route (dynamicParams = false)
 }
+
+const CARD_CLASS =
+  "flex items-center gap-3.5 min-w-0 bg-card border border-line rounded-[18px] p-4 shadow-[0_4px_14px_-12px_rgba(120,90,60,0.5)]";
+const LINK_CLASS = `${CARD_CLASS} group transition duration-150 hover:border-accent-soft hover:-translate-y-0.5`;
 
 function ChevronIcon() {
   return (
@@ -29,14 +34,11 @@ function LinkedParentsLabel(parentCount: number): string {
   return `${parentCount} padres vinculados`;
 }
 
-export default function KidCard({ kid }: KidCardProps) {
+export default function KidCard({ kid, canOpenProfile = true }: KidCardProps) {
   const parentCount = kid.parents.length;
 
-  return (
-    <Link
-      href={`/kids/${kid.slug}`}
-      className="group flex items-center gap-3.5 min-w-0 bg-card border border-line rounded-[18px] p-4 shadow-[0_4px_14px_-12px_rgba(120,90,60,0.5)] transition duration-150 hover:border-accent-soft hover:-translate-y-0.5"
-    >
+  const cardBody = (
+    <>
       <div
         className="flex-none flex h-12 w-12 items-center justify-center rounded-full font-fredoka font-semibold text-[19px]"
         style={{ backgroundColor: kid.avatar.background, color: kid.avatar.text }}
@@ -60,6 +62,16 @@ export default function KidCard({ kid }: KidCardProps) {
       ) : (
         <ChevronIcon />
       )}
+    </>
+  );
+
+  if (!canOpenProfile) {
+    return <div className={CARD_CLASS}>{cardBody}</div>;
+  }
+
+  return (
+    <Link href={`/kids/${kid.slug}`} className={LINK_CLASS}>
+      {cardBody}
     </Link>
   );
 }
