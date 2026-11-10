@@ -11,6 +11,7 @@ export default function KidsPage() {
         </div>
         <button
           type="button"
+          id="add-kids-button"
           disabled
           className="flex items-center gap-2 px-[18px] py-[11px] rounded-[14px] bg-[linear-gradient(180deg,var(--color-accent-soft),var(--color-accent-warm))] font-extrabold text-[14.5px] text-white cursor-default"
         >
