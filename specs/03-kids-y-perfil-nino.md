@@ -1,6 +1,6 @@
 # SPEC 03 — Pantalla Niños (`/kids`) y perfil de niño (`/kids/[slug]`)
 
-> **Estado:** Aprovado
+> **Estado:** Implementado
 > **Depende de:** SPEC 01, SPEC 02
 > **Fecha:** 2026-11-04
 > **Objetivo:** Implementar el listado de niños (`ninos.dc.html`) en `/kids` y el perfil (`perfil-nino.dc.html`) en `/kids/[slug]` con datos hardcodeados, sidebar compartida vía route group `(app)`, buscador interactivo y badges generados desde los datos.

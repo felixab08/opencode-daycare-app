@@ -1,6 +1,6 @@
-import type { InputHTMLAttributes } from "react";
+import type { ComponentPropsWithRef } from "react";
 
-interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface TextInputProps extends ComponentPropsWithRef<"input"> {
   className?: string;
   /** Font classes. The code-sized invitation code input overrides the 15px default. */
   textClass?: string;
