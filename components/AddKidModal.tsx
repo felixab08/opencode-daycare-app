@@ -51,6 +51,7 @@ function formatKidDate(isoDate: string): string {
 export default function AddKidModal({ avatarIndex, onClose, onAddKid }: AddKidModalProps) {
   const [fullName, setFullName] = useState("");
   const [birthDate, setBirthDate] = useState("");
+  const [room, setRoom] = useState("Soles");
   const [allergiesText, setAllergiesText] = useState("");
   const [medicalNotes, setMedicalNotes] = useState("");
 
@@ -88,7 +89,7 @@ export default function AddKidModal({ avatarIndex, onClose, onAddKid }: AddKidMo
       lastName,
       ageYears: today.getFullYear() - birthYear, // display-only on the card, no birthday adjustment
       birthDate: formatKidDate(birthDate),
-      room: "Soles",
+      room,
       entryDate: `${MONTH_LABELS[today.getMonth()]} ${today.getFullYear()}`,
       allergies,
       ...(allergyNote ? { allergyNote } : {}),
@@ -100,14 +101,14 @@ export default function AddKidModal({ avatarIndex, onClose, onAddKid }: AddKidMo
 
   return (
     <div
-      className="fixed inset-0 z-50 flex overflow-y-auto bg-ink/40 p-4 sm:p-10"
+      className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-ink/40 p-4 sm:p-10"
       onClick={handleHideClick}
     >
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="add-kid-title"
-        className="my-auto w-full max-w-[520px] overflow-hidden rounded-[24px] border border-line bg-canvas-warm shadow-[0_20px_50px_-24px_rgba(63,54,46,0.35)]"
+        className="m-auto w-full max-w-[520px] overflow-hidden rounded-[24px] border border-line bg-canvas-warm shadow-[0_20px_50px_-24px_rgba(63,54,46,0.35)]"
       >
         <div className="flex items-center justify-between gap-4 border-b border-line px-[26px] py-5">
           <button type="button" onClick={onClose} className="text-[15px] font-bold text-muted">
@@ -152,11 +153,21 @@ export default function AddKidModal({ avatarIndex, onClose, onAddKid }: AddKidMo
               />
             </div>
             <div className="flex-1">
-              <label className={labelClasses}>SALA</label>
-              <div className="flex w-full items-center gap-2 rounded-[14px] border-[1.5px] border-line bg-card px-4 py-3.5 text-[15px] font-bold text-ink">
-                Soles
-                <span className="flex-1" />
-                <svg className="flex-none text-muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <label htmlFor="add-kid-room" className={labelClasses}>
+                SALA
+              </label>
+              <div className="relative">
+                <select
+                  id="add-kid-room"
+                  value={room}
+                  onChange={(event) => setRoom(event.target.value)}
+                  className="w-full appearance-none rounded-[14px] border-[1.5px] border-line bg-card px-4 py-3.5 pr-10 text-[15px] font-bold text-ink outline-none focus:border-accent-soft"
+                >
+                  <option value="Soles">Soles</option>
+                  <option value="Lunas">Lunas</option>
+                  <option value="Estrellas">Estrellas</option>
+                </select>
+                <svg className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </div>

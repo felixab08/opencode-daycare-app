@@ -6,10 +6,12 @@ import type { Kid } from "./kids-data";
 
 interface KidsGridProps {
   kids: Kid[]; // dynamic list owned by the parent screen (starts as the kids-data array)
+  /** Slugs added this session: their cards render static (added kids have no profile page). */
+  addedSlugs?: Set<string>;
   children?: ReactNode; // slot rendered between the search box and the grid (e.g. the "SALA SOLES" divider)
 }
 
-export default function KidsGrid({ kids, children }: KidsGridProps) {
+export default function KidsGrid({ kids, addedSlugs = new Set<string>(), children }: KidsGridProps) {
   const [query, setQuery] = useState("");
 
   const normalizedQuery = query.trim().toLowerCase();
@@ -44,7 +46,7 @@ export default function KidsGrid({ kids, children }: KidsGridProps) {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
           {filteredKids.map((kid) => (
-            <KidCard key={kid.slug} kid={kid} />
+            <KidCard key={kid.slug} kid={kid} canOpenProfile={!addedSlugs.has(kid.slug)} />
           ))}
         </div>
       )}

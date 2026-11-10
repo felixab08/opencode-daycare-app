@@ -15,7 +15,7 @@
 - `components/KidsDirectory.tsx` (client, nuevo): concentra el estado de la pantalla — lista de niños (inicializada con el array de `kids-data`) y visibilidad del modal. Renderiza el encabezado (título + botón), el divisor "SALA SOLES" con el contador **derivado de la lista dinámica** (así sube de 8 a 9 al agregar) y la grilla.
 - `components/AddKidModal.tsx` (client, nuevo): modal overlay del mockup, sobre `/kids`:
   - Fondo oscurecido fijo a pantalla completa; tarjeta de 520px centrada con barra superior **Cancelar / Agregar niño / Guardar** y los cinco campos del mockup.
-  - **Campos obligatorios** (elección del usuario): NOMBRE COMPLETO (`input`), FECHA DE NACIMIENTO (`input type="date"`, elección del usuario). SALA se muestra como el mockup (chip estático "Soles" con chevron, sin dropdown: es la única sala) y siempre viaja llena.
+  - **Campos obligatorios** (elección del usuario): NOMBRE COMPLETO (`input`), FECHA DE NACIMIENTO (`input type="date"`, elección del usuario). SALA es un `select` con las opciones Soles / Lunas / Estrellas (enmienda del usuario de 2026-11-10: reemplaza el chip estático del mockup) y siempre viaja llena (inicial: "Soles").
   - **Campos opcionales**: ALERGIAS (input, etiquetas separadas por comas) y NOTAS MÉDICAS (textarea).
   - **Guardar** deshabilitado hasta que haya nombre y fecha; habilitado toma color `accent`.
   - Al guardar se construye un `Kid` y se agrega a la lista: la grilla se actualiza y el modal se cierra. **Sin persistencia**: al recargar la página el niño desaparece.
@@ -62,7 +62,7 @@ const [medicalNotes, setMedicalNotes] = useState(""); // opcional
 | `lastName`    | el resto del nombre (vacío si es una sola palabra)            |
 | `ageYears`    | año actual − año de `birthDate` (sin precisión de cumpleaños) |
 | `birthDate`   | mismo texto visible que el array: `12 mar 2022`               |
-| `room`        | `"Soles"`                                                     |
+| `room` | valor del select SALA: `"Soles"` (default), `"Lunas"` o `"Estrellas"` — enmienda del usuario de 2026-11-10 |
 | `entryDate`   | mes corriente en el formato del array: `nov 2026`             |
 | `allergies`   | `allergiesText` partido por comas y en MAYÚSCULAS             |
 | `allergyNote` | `medicalNotes` (solo si viene texto)                          |
@@ -96,7 +96,7 @@ const [medicalNotes, setMedicalNotes] = useState(""); // opcional
 
 - [ ] En `/kids` el botón "Agregar niño" (id `add-kids-button`) está habilitado; click abre el modal overlay sobre la pantalla.
 - [ ] El modal replica el mockup: tarjeta `canvas-warm` de 520px, barra Cancelar / "Agregar niño" (Fredoka) / Guardar, y los cinco campos con sus labels exactos.
-- [ ] FECHA DE NACIMIENTO es un `input type="date"`; SALA muestra "Soles" estático con chevron y no abre opciones.
+- [ ] FECHA DE NACIMIENTO es un `input type="date"`; SALA es un `select` con las opciones Soles / Lunas / Estrellas (enmienda del usuario de 2026-11-10).
 - [ ] Guardar queda deshabilitado sin nombre o sin fecha; al completar ambos se ve en `accent` y queda activo.
 - [ ] Guardar cierra el modal y agrega la tarjeta: avatar pastel, nombre, edad calculada, "sin padres vinculados", y badge VINCULAR (o badges de alergia si se cargaron etiquetas).
 - [ ] El divisor pasa de "8 niños" a "9 niños" al agregar; el buscador filtra también al niño nuevo.
@@ -121,7 +121,7 @@ const [medicalNotes, setMedicalNotes] = useState(""); // opcional
 - **Sí:** `KidsGrid` pasa a recibir la lista por prop: la filtra y el estado deja de estar clavado al import.
 - **Sí:** slug ASCII del nombre completo (convención de SPEC 03) y avatar pastel ciclando los 5 pares de SPEC 03: el mínimo inventado que la tarjeta necesita para verse.
 - **Sí:** `ageYears` calculado por diferencia de años, sin ajuste de cumpleaños — el campo es display en tarjeta, no dato de perfil.
-- **No:** dropdown real de sala (una sola sala; el mockup mismo no lo abre).
+- **Enmienda (usuario, 2026-11-10):** dropdown real de SALA con `<select>` + opciones Soles / Lunas / Estrellas, y centrado absoluto del modal en pantallas grandes. Reemplaza las decisiones previas "No: dropdown real de sala" y el patrón de centrado inicial.
 - **No:** animaciones de entrada/salida del modal ni portal a nivel document (el overlay va renderizado condicional dentro del árbol).
 - **No:** persistencia, localStorage, DB ni perfil para los niños agregados.
 
