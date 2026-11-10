@@ -20,7 +20,7 @@ export default function KidsPage() {
         </button>
       </div>
 
-      <KidsGrid>
+      <KidsGrid kids={kids}>
         <div className="flex items-center gap-3 mb-3.5">
           <span className="font-extrabold text-[12.5px] tracking-[0.8px] text-ink">SALA SOLES</span>
           <span className="text-[13px] text-muted">{kids.length} niños</span>

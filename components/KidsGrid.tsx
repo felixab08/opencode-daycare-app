@@ -2,13 +2,14 @@
 
 import { useState, type ReactNode } from "react";
 import KidCard from "./KidCard";
-import { kids } from "./kids-data";
+import type { Kid } from "./kids-data";
 
 interface KidsGridProps {
+  kids: Kid[]; // dynamic list owned by the parent screen (starts as the kids-data array)
   children?: ReactNode; // slot rendered between the search box and the grid (e.g. the "SALA SOLES" divider)
 }
 
-export default function KidsGrid({ children }: KidsGridProps) {
+export default function KidsGrid({ kids, children }: KidsGridProps) {
   const [query, setQuery] = useState("");
 
   const normalizedQuery = query.trim().toLowerCase();
