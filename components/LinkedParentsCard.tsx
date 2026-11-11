@@ -1,6 +1,8 @@
 "use client";
 
-import type { Kid } from "./kids-data";
+import { useState } from "react";
+import LinkParentModal from "./LinkParentModal";
+import type { Kid, KidParent } from "./kids-data";
 
 interface LinkedParentsCardProps {
   kid: Kid;
@@ -9,11 +11,19 @@ interface LinkedParentsCardProps {
 const parentStatusText = (isActive: boolean): string => (isActive ? "activa" : "invitación enviada");
 
 export default function LinkedParentsCard({ kid }: LinkedParentsCardProps) {
+  const [parentsList, setParentsList] = useState(kid.parents);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  function handleInvite(parent: KidParent) {
+    setParentsList((currentParents) => [...currentParents, parent]);
+    setIsModalOpen(false);
+  }
+
   return (
     <div className="bg-card border border-line rounded-2xl px-4.5 py-4">
       <div className="font-extrabold text-[12.5px] tracking-[0.8px] text-muted mb-3.5">PADRES VINCULADOS</div>
       <div className="flex flex-col gap-3.5">
-        {kid.parents.map((parent) => (
+        {parentsList.map((parent) => (
           <div key={parent.name} className="flex items-center gap-3">
             <div
               className="flex-none flex h-10 w-10 items-center justify-center rounded-full font-fredoka font-semibold text-[16px] text-white"
@@ -34,8 +44,8 @@ export default function LinkedParentsCard({ kid }: LinkedParentsCardProps) {
         ))}
         <button
           type="button"
-          disabled
-          className="flex items-center gap-3 pt-2 cursor-default"
+          onClick={() => setIsModalOpen(true)}
+          className="flex items-center gap-3 pt-2"
           id="link-parent"
         >
           <span className="flex-none flex h-10 w-10 items-center justify-center rounded-full border-[1.5px] border-dashed border-line text-muted">
@@ -44,6 +54,8 @@ export default function LinkedParentsCard({ kid }: LinkedParentsCardProps) {
           <span className="font-extrabold text-[14.5px] text-accent">Vincular otro padre</span>
         </button>
       </div>
+
+      {isModalOpen && <LinkParentModal kid={kid} onClose={() => setIsModalOpen(false)} onInvite={handleInvite} />}
     </div>
   );
 }
