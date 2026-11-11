@@ -38,6 +38,8 @@
 - Las specs viven en `specs/` con nombre `NN-slug.md` (numeración secuencial desde `01-`, slug kebab-case).
 - Estados de spec: `Borrador` → `Aprobado` → `Implementado` (solo el usuario cambia el estado).
 - `/spec-impl` crea una rama git `spec-NN-slug` (controlado por `specs/.spec-config.yml`, `AutoCreateBranch: true` por defecto) e implementa paso a paso con pausas; **nunca commitea por su cuenta**.
+- cuando se crea una nueva rama traer todos los cambios que habían en la rama anterior que no estaban subidos, se puede usar por ejemplo `git checkout -b 01-`.
+- Si al crear la rama hay cambios sin commit en el working tree, **elegir siempre la opción 2**: continuar de todos modos y que los cambios viajen a la nueva rama. No pedir stash ni commit al usuario.
 - Plantilla y reglas del documento: `.agents/skills/spec/template.md` (encabezado en blockquote, alcance In/Out, plan numerado con pasos que dejan el juego funcionando, criterios de aceptación verificables, decisiones tomadas/descartadas).
 - No implementes nada sin una spec aprobada; si piden un cambio pequeño fuera del flujo, proporle crear una spec primero.
 
